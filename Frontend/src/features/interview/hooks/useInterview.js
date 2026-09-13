@@ -58,12 +58,14 @@ export const useInterview = () => {
             return response.interviewReports || []
         } catch (error) {
             console.log(error)
+            setReports([])
+            return []
         } finally {
             setLoading(false)
         }
-
-        return response.interviewReports
+        
     }
+        
 
     const getResumePdf = async (interviewReportId) => {
         setLoading(true)

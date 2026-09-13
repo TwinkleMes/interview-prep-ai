@@ -7,6 +7,7 @@ const puppeteer = require('puppeteer')
 const ai = new GoogleGenAI({
     apiKey : config.GOOGLE_GEMINI_API_KEY
 })
+console.log("KEY LOADED:", config.GOOGLE_GEMINI_API_KEY)
 
 const interviewReportSchema = z.object({
     matchScore: z.number().describe("A score between 0 and 100 indicating how well the candidate's profile matches the job describe"),

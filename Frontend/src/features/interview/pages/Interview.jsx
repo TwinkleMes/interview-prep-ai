@@ -17,8 +17,7 @@ const QuestionCard = ({ item, index }) => {
     return (
         <div className='q-card'>
             <div className='q-card__header' onClick={() => setOpen(o => !o)}>
-                <span cl
-                assName='q-card__index'>Q{index + 1}</span>
+                <span className='q-card__index'>Q{index + 1}</span>
                 <p className='q-card__question'>{item.question}</p>
                 <span className={`q-card__chevron ${open ? 'q-card__chevron--open' : ''}`}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9" /></svg>
