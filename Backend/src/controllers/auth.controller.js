@@ -5,6 +5,14 @@ const jwt = require('jsonwebtoken')
 const config = require("../config/config")
 
 
+const cookieOptions = {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+    maxAge: 24 * 60 * 60 * 1000
+}
+
+
 
 /**
  * @name registerUserController
@@ -42,7 +50,7 @@ async function registerUserController(req,res){
         expiresIn:"1d"
     })
 
-    res.cookie("token",token)
+    res.cookie("token",token,cookieOptions)
     res.status(201).json({
         message:"User registered successfully",
         user:{
@@ -80,7 +88,7 @@ async function loginController(req,res){
         expiresIn:"1d"
     })
 
-    res.cookie("token",token)
+    res.cookie("token",token,cookieOptions)
     res.status(200).json({
         message:"User loggedIn successfully",
         user:{
@@ -122,13 +130,14 @@ async function logoutController(req,res){
     await blacklistTokenModel.create({token})
    }
    
-   res.clearCookie("token")
+   res.clearCookie("token",cookieOptions)
    res.status(200).json({
     message:"User logged out succcessfully"
    })
 }
 
 module.exports = {
+    
     registerUserController,
     loginController,
     getMeController,
