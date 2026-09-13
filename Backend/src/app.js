@@ -6,9 +6,14 @@ const app = express()
 app.use(cookieParser())
 app.use(express.json())
 
+const allowedOrigins = [
+    "http://localhost:5173",
+    process.env.FRONTEND_URL // your deployed Vercel URL
+].filter(Boolean)
+
 app.use(cors({
-    origin:"http://localhost:5173",
-    credentials:true
+    origin: allowedOrigins,
+    credentials: true
 }))
 
 const authRouter = require("./routes/auth.routes")
